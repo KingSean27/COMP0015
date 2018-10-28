@@ -2,7 +2,6 @@
 import time
 import os
 
-
 # all definitions
 def menu_screen():
     """This function prints the menu options."""
@@ -17,7 +16,6 @@ def menu_screen():
     Show Projects  (S)
     Quit           (Q)
     ''')
-
 
 def menu_redirect():
     """This function redirects the user to a different page.
@@ -46,13 +44,11 @@ def menu_redirect():
         print("Please choose again")
         menu_redirect()
 
-
 def menu():
     """This calls the functions which allow the menu to be displayed and operate."""
 
     menu_screen()
     menu_redirect()
-
 
 def enter_votes():
     """This displays a message for two seconds then clears the console."""
@@ -62,7 +58,6 @@ def enter_votes():
     time.sleep(2)
     menu()
 
-
 def show_projects():
     """This displays a message for two seconds then clears the console."""
 
@@ -71,7 +66,6 @@ def show_projects():
     time.sleep(2)
     menu()
 
-
 def about():
     """This displays information about the programme and returns to the menu screen on the user's command """
 
@@ -79,7 +73,6 @@ def about():
     print("This is Split-it a coursework marking app")
     input("\n\nPress any key followed by <Enter> to return to the main menu.")
     menu()
-
 
 def create_project():
     """This function allows the user to add a new team and participants."""
