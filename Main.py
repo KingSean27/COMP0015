@@ -1,3 +1,7 @@
+# 00000000000000000000000000000000000000000000000000000000000000000000000000079
+
+
+
 # imports modules used
 import time
 import os
@@ -20,8 +24,9 @@ def menu_screen():
 def menu_redirect():
     """This function redirects the user to a different page.
 
-    The user provides an input and is then redirected to the corresponding page.
-    If an invalid choice is entered then the user is prompted to make another choice."""
+    The user provides an input and is then redirected
+    to the corresponding page. If an invalid choice is entered
+    then the user is prompted to make another choice."""
 
     menu_choice = str(input("Please choose an option and press <Enter>: "))
     menu_choice = menu_choice.upper()
@@ -45,7 +50,8 @@ def menu_redirect():
         menu_redirect()
 
 def menu():
-    """This calls the functions which allow the menu to be displayed and operate."""
+    """This calls the functions which allows
+    the menu to be displayed and operate."""
 
     menu_screen()
     menu_redirect()
@@ -67,7 +73,8 @@ def show_projects():
     menu()
 
 def about():
-    """This displays information about the programme and returns to the menu screen on the user's command """
+    """This displays information about the programme and returns
+    to the menu screen on the user's command """
 
     os.system('clear')
     print("This is Split-it a coursework marking app")
@@ -75,7 +82,8 @@ def about():
     menu()
 
 def create_project():
-    """This function allows the user to add a new team and participants."""
+    """This function allows the user to
+    add a new team and participants."""
 
     os.system('clear')
     group = input("Enter the project name: ")
@@ -92,3 +100,8 @@ def create_project():
 
 #Call the menu function to begin the programme
 menu()
+
+
+
+
+# 00000000000000000000000000000000000000000000000000000000000000000000000000079
