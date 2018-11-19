@@ -30,24 +30,27 @@ def menu_redirect():
 
     menu_choice = str(input("Please choose an option and press <Enter>: "))
     menu_choice = menu_choice.upper()
+    app_open = "*"
 
-    if menu_choice == "A":
-        about()
-    elif menu_choice == "C":
-        create_project()
-    elif menu_choice == "V":
-        enter_votes()
-    elif menu_choice == "S":
-        show_projects()
-    elif menu_choice == "Q":
-        os.system('clear')
-        print("Thanks for using Split-it! Closing application...")
-        time.sleep(2)
-        os.system('clear')
-        quit()
-    else:
-        print("Please choose again")
-        menu_redirect()
+    while app_open != "q":
+
+        if menu_choice == "A":
+            about()
+        elif menu_choice == "C":
+            create_project()
+        elif menu_choice == "V":
+            enter_votes()
+        elif menu_choice == "S":
+            show_projects()
+        elif menu_choice == "Q":
+            os.system('clear')
+            print("Thanks for using Split-it! Closing application...")
+            time.sleep(2)
+            os.system('clear')
+            app_open = "q"
+        else:
+            print("Please choose again")
+            menu_redirect()
 
 def menu():
     """This calls the functions which allows
@@ -62,7 +65,7 @@ def enter_votes():
     os.system('clear')
     print("New features coming soon!")
     time.sleep(2)
-    menu()
+
 
 def show_projects():
     """This displays a message for two seconds then clears the console."""
@@ -70,7 +73,7 @@ def show_projects():
     os.system('clear')
     print("New features coming soon!")
     time.sleep(2)
-    menu()
+
 
 def about():
     """This displays information about the programme and returns
@@ -79,7 +82,7 @@ def about():
     os.system('clear')
     print("This is Split-it a coursework marking app")
     input("\n\nPress any key followed by <Enter> to return to the main menu.")
-    menu()
+
 
 def create_project():
     """This function allows the user to
@@ -96,12 +99,8 @@ def create_project():
         time.sleep(2)
         create_project()
     input("\n\nPress the any key to return to main menu.")
-    menu()
 
-#Call the menu function to begin the programme
+#Call the main function to begin the programme
 menu()
-
-
-
 
 # 00000000000000000000000000000000000000000000000000000000000000000000000000079
