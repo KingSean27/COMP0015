@@ -1,6 +1,9 @@
 #  Author: Rae Harbird
 #  Date: November 2018
 # Used to validate team member's name and project name
+
+import sic
+
 ## Constants
 MINIMUM_NAME_LENGTH = 3     
 MAXIMUM_NAME_LENGTH = 10
@@ -82,16 +85,19 @@ class Rae:
 
     def getTeamNames(teamSize):
         teamNames = []
+        teamMembers = []
         i = 1
         while i <= teamSize:
             teamName = Rae.getPersonName()
             if teamName not in teamNames:
                 teamNames.append(teamName)
+                teamMember = sic.Person(theName=teamName, theProject="")
+                teamMembers.append(teamMember)
                 i = i + 1
             else:
                 print("\n\t\tSorry, you already have a team member called {}, try again."
                       .format(teamName))
-        return teamNames
+        return teamMembers
 
 
 
