@@ -1,0 +1,25 @@
+
+import unittest
+from rae import Rae
+
+class TestRae(unittest.TestCase):
+   
+    def test_isInteger(self):
+        self.assertEqual(Rae.isInteger(5), True)
+        self.assertEqual(Rae.isInteger("a"), False)
+
+    def test_getProjectName(self):
+        self.assertEqual(Rae.getProjectName("Project 1"), Rae.projectname)
+
+ # should use assert true/false
+
+# use sset up and tear down
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    unittest.main()

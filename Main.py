@@ -5,15 +5,8 @@
 # imports modules used
 import time
 import os
-from Rae import Rae
+from rae import Rae
 import sic
-
-# list of constants to be used
-MINIMUM_NAME_LENGTH = 3     
-MAXIMUM_NAME_LENGTH = 10
-
-MINIMUM_TEAM_SIZE = 3
-MAXIMUM_TEAM_SIZE = 5
 
 
 # all definitions
@@ -69,17 +62,27 @@ def menu():
     menu_screen()
     menu_redirect()
 
-
+###############  ################################################  ####################  ###############
 def enter_votes():
-    """This displays a message for two seconds then clears the console."""
+    """This looks up the project and lets members enter votes"""
 
     os.system('clear')
     global menu_choice
+    global project_dict
     menu_choice = ""
-    print("New features coming soon!")
+    
+    lookup = str(input("Enter the project name: " ))
+    
+    if lookup in project_dict:
+        #print(project_dict[lookup])
+        number = sic.NoOfMems(project_dict[lookup])
+        print("There are {} team members ".format(number))
+    else:
+        print ("This project does not exist in the database")
+    
     time.sleep(2)
     menu_screen()
-   
+###########   ####################################################  ##################  ###############
 
 def show_projects():
     """This displays a message for two seconds then clears the console."""
@@ -114,13 +117,14 @@ def create_project():
     projectName = Rae.getProjectName()
     teamSize = Rae.getTeamSize()
     members = Rae.getTeamNames(teamSize)
-    print(members)
+    #print(members)
 
 
     global project_dict
     project_dict[projectName] = sic.Project(theName=projectName, theNoOfMems=teamSize, theMembers=members)
 
-    print(project_dict)
+    #print(project_dict)
+    #print(type(project_dict))
     input("\n\nPress the any key to return to main menu.")
     menu_screen()
     
