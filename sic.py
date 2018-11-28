@@ -15,7 +15,7 @@ class Project:
 
     @property
     def NoOfMems(self):
-        return self._name
+        return self._NoOfMems
 
     @NoOfMems.setter
     def NoOfMems(self, theNoOfMems):
@@ -23,14 +23,14 @@ class Project:
 
     @property
     def members(self):
-        return self._name
+        return self._members
 
     @members.setter
     def members(self, theMembers):
         self._members = theMembers
 
     def __str__(self):
-        return self.name, self.NoOfMems, self.members
+         return '{} {} {}'.format(self.name, self.NoOfMems, self.members)
 
 
 class Person:
@@ -62,8 +62,8 @@ class Person:
 
     @votes.setter
     def votes(self, theVotes):
-        self._name = theVotes
+        self._votes = theVotes
 
 
     def __str__(self):
-        return self.name, self.project, self.votes
+        return '{} {} {}'.format(self.project, self.name, self.votes)
