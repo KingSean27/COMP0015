@@ -1,6 +1,5 @@
 # 00000000000000000000000000000000000000000000000000000000000000000000000000079
-
-## remeber to replace cls with clear 
+ 
 
 # imports modules used
 import time
@@ -74,13 +73,42 @@ def enter_votes():
     lookup = str(input("Enter the project name: " ))
     
     if lookup in project_dict:
-        #print(project_dict[lookup])
-        number = sic.NoOfMems(project_dict[lookup])
-        print("There are {} team members ".format(number))
+        number = project_dict[lookup].NoOfMems
+        proname = project_dict[lookup].name
+        promembers = project_dict[lookup].members
+        print("There are {} team members in {}".format(number, proname))
+        
+        print (promembers)
+        i = 0
+        
+        while i < number:
+          askvote1 = project_dict[lookup].members[i]
+          askvote1 = str(askvote1)
+          askvote1 = askvote1 [1:-3]
+          print ("Enter {}'s points the number must add up to 100".format(askvote1))
+          
+          for item in project_dict[lookup].members:
+            askvote2 = str(item.name)
+            
+            if askvote1 == askvote2:
+              print (".")
+            else:
+              vote = input (" Enter {}'s points for {} ".format(askvote1, askvote2))
+            
+          i = i + 1
+        else: 
+          print ("All votes have been successfully entered")
+          
+        input("\n\nPress the any key to return to main menu.")  
+        
+        
+        
     else:
         print ("This project does not exist in the database")
+        
     
-    time.sleep(2)
+    
+    time.sleep(5)
     menu_screen()
 ###########   ####################################################  ##################  ###############
 
@@ -117,14 +145,12 @@ def create_project():
     projectName = Rae.getProjectName()
     teamSize = Rae.getTeamSize()
     members = Rae.getTeamNames(teamSize)
-    #print(members)
-
 
     global project_dict
+    project_dict = {}
     project_dict[projectName] = sic.Project(theName=projectName, theNoOfMems=teamSize, theMembers=members)
 
-    #print(project_dict)
-    #print(type(project_dict))
+  
     input("\n\nPress the any key to return to main menu.")
     menu_screen()
     
