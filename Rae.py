@@ -91,9 +91,10 @@ class Rae:
             teamName = Rae.getPersonName()
             if teamName not in teamNames:
                 teamNames.append(teamName)
-                teamMember = sic.Person(theName=teamName, theProject="")
+                teamMember = sic.Person(theName=teamName, theProject="", theVotes={})
                 teamMembers.append(teamMember)
                 i = i + 1
+                # TODO: the project should have the right project name!!!!
             else:
                 print("\n\t\tSorry, you already have a team member called {}, try again."
                       .format(teamName))
@@ -111,4 +112,3 @@ class Rae:
                                                                MAXIMUM_NAME_LENGTH + 1))
             personName = input("\n\tEnter name: ")
         return personName
-
