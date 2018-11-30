@@ -4,9 +4,11 @@
 # imports modules used
 import time
 import os
-from rae import Rae
+import verify_funcs as vf
 import sic
 
+# constants 
+MAX_VOTES = 100   
 
 # all definitions
 def menu_screen():
@@ -75,16 +77,15 @@ def enter_votes():
     if lookup in project_dict:
         number = project_dict[lookup].NoOfMems
         proname = project_dict[lookup].name
-        promembers = project_dict[lookup].members
+        #promembers = project_dict[lookup].members
         print("There are {} team members in {}".format(number, proname))
         
-        print (promembers)
+        #print (promembers)
         i = 0
         
         while i < number:
-          askvote1 = project_dict[lookup].members[i]
-          askvote1 = str(askvote1)
-          askvote1 = askvote1 [1:-3]
+          askvote1 = project_dict[lookup].members[i].name
+          #print(askvote1)
           print ("Enter {}'s points the number must add up to 100".format(askvote1))
           
           for item in project_dict[lookup].members:
@@ -93,7 +94,9 @@ def enter_votes():
             if askvote1 == askvote2:
               print (".")
             else:
-              vote = input (" Enter {}'s points for {} ".format(askvote1, askvote2))
+              vote = int(input(" Enter {}'s points for {} ".format(askvote1, askvote2)))
+              vote = vf.verif2.voteInput(vote)
+              
             
           i = i + 1
         else: 
@@ -142,9 +145,9 @@ def create_project():
     os.system('clear')
     global menu_choice
     menu_choice = ""
-    projectName = Rae.getProjectName()
-    teamSize = Rae.getTeamSize()
-    members = Rae.getTeamNames(teamSize)
+    projectName = vf.Rae.getProjectName()
+    teamSize = vf.Rae.getTeamSize()
+    members = vf.Rae.getTeamNames(teamSize, projectName)
 
     global project_dict
     project_dict = {}
