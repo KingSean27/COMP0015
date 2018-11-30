@@ -83,7 +83,7 @@ class Rae:
             return False
 
 
-    def getTeamNames(teamSize):
+    def getTeamNames(teamSize, projectName):
         teamNames = []
         teamMembers = []
         i = 1
@@ -91,7 +91,7 @@ class Rae:
             teamName = Rae.getPersonName()
             if teamName not in teamNames:
                 teamNames.append(teamName)
-                teamMember = sic.Person(theName=teamName, theProject="", theVotes={})
+                teamMember = sic.Person(theName=teamName, theProject=projectName, theVotes={})
                 teamMembers.append(teamMember)
                 i = i + 1
                 # TODO: the project should have the right project name!!!!
