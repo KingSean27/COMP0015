@@ -1,114 +1,165 @@
-#  Author: Rae Harbird
-#  Date: November 2018
-# Used to validate team member's name and project name
+# 00000000000000000000000000000000000000000000000000000000000000000000000000079
+ 
 
+# imports modules used
+import time
+import os
+from rae import Rae
 import sic
 
-## Constants
-MINIMUM_NAME_LENGTH = 3     
-MAXIMUM_NAME_LENGTH = 10
+# constants 
+MAX_VOTES = 100   
 
-MINIMUM_TEAM_SIZE = 3
-MAXIMUM_TEAM_SIZE = 5
+# all definitions
+def menu_screen():
+    """This function prints the menu options."""
+    os.system('clear')
+    print("Welcome to Split-it!")
 
-##  Sets up a project from the information entered by the user.  
-#   @return a tuple containing the project name and the names
-#           of team members
-class Rae: 
+    print('''
+    About          (A)
+    Create Project (C)
+    Enter Votes    (V)
+    Show Projects  (S)
+    Quit           (Q)
+    ''')
 
+def menu_redirect():
+    """This function redirects the user to a different page.
+    The user provides an input and is then redirected
+    to the corresponding page. If an invalid choice is entered
+    then the user is prompted to make another choice."""
 
+    app_open = "*"
+  
+    while app_open != "q": 
+        global menu_choice
+        menu_choice = str(input("Please choose an option and press <Enter>: "))
+        menu_choice = menu_choice.upper()
 
-##  Prompts the user for a project name and validates it.
-#   @return a string containing the project name.
-#
-#   Invariants: a project name must be between the minimum and maximum length
-#               and cannot be blank. The name must contain only alphabetic 
-#               characters.
-#           
-    def getProjectName() :
-        projectName = input("\n\tEnter project name: ")
-      
-        while Rae.isValidName(projectName, MINIMUM_NAME_LENGTH, MAXIMUM_NAME_LENGTH) == False :
-            print(("\n\t\tThe project name must be more than {} characters long, "
-                   "less than {} characters long and must contain only "
-                   "alphabetic characters. Try again.\n")
-                   .format(MINIMUM_NAME_LENGTH - 1, MAXIMUM_NAME_LENGTH + 1))
-            projectName = input("\n\tEnter project name: ")
-        return projectName
+        if menu_choice == "A":
+            about()
+        elif menu_choice == "C":
+            create_project()
+        elif menu_choice == "V":
+            enter_votes()
+        elif menu_choice == "S":
+            show_projects()
+        elif menu_choice == "Q":
+            os.system('clear')
+            print("Thanks for using Split-it! Closing application...")
+            time.sleep(2)
+            os.system('clear')
+            app_open = "q"
+        else:
+            print("Please choose again")
+            time.sleep(2)
+            menu_screen ()
+            
+            
+def menu():
+    global project_dict
+    project_dict = {}
+    menu_screen()
+    menu_redirect()
 
+###############  ################################################  ####################  ###############
+def enter_votes():
+    """This looks up the project and lets members enter votes"""
 
-# Check the string contains only characters from the alphabet and check that it is the right length.
-# 
-# @param theString the string to be validated
-# @minimum the minimum length of the string
-# @maximum the maximum length of the string
-# @return True if the string conforms to the validation conditions and False if it does not.
-#
-    def isValidName(theString, minimum, maximum) :
+    os.system('clear')
+    global menu_choice
+    global project_dict
+    menu_choice = ""
     
-        return theString.isalpha() == True \
-            and len(theString) >= minimum \
-            and len(theString) <= maximum
+    lookup = str(input("Enter the project name: " ))
     
-
-
-##  Prompts the user for the team size and validates it.
-#   @return the number of people in the team.
-#
-#   Invariants: the team size must be between the minimum and maximum size.
-#
-    def getTeamSize() :
-        teamSize = input("\n\tHow many people in the team: ")
+    if lookup in project_dict:
+        number = project_dict[lookup].NoOfMems
+        proname = project_dict[lookup].name
+        #promembers = project_dict[lookup].members
+        print("There are {} team members in {}".format(number, proname))
         
-        while Rae.isValidTeamSize(teamSize, MINIMUM_TEAM_SIZE, MAXIMUM_TEAM_SIZE) == False :
-            print(("\n\t\tThe team size must be more than {} and less than {}. "
-                   "Try again.").format(MINIMUM_TEAM_SIZE - 1, MAXIMUM_TEAM_SIZE + 1))
-            teamSize = input("\n\tHow many people in the team: ")
-    
-        return int(teamSize)
-    
-    
-    
-    def isValidTeamSize(size, minimum, maximum) :
-    
-        return Rae.isInteger(size) and int(size) >= minimum and int(size) <= maximum
-
-
-
-    def isInteger(number) :
-        try: 
-            int(number) 
-            return True 
-        except ValueError:
-            return False
-
-
-    def getTeamNames(teamSize, projectName):
-        teamNames = []
-        teamMembers = []
-        i = 1
-        while i <= teamSize:
-            teamName = Rae.getPersonName()
-            if teamName not in teamNames:
-                teamNames.append(teamName)
-                teamMember = sic.Person(theName=teamName, theProject=projectName, theVotes={})
-                teamMembers.append(teamMember)
-                i = i + 1
-                # TODO: the project should have the right project name!!!!
+        #print (promembers)
+        i = 0
+        
+        while i < number:
+          askvote1 = project_dict[lookup].members[i].name
+          #print(askvote1)
+          print ("Enter {}'s points the number must add up to 100".format(askvote1))
+          
+          for item in project_dict[lookup].members:
+            askvote2 = str(item.name)
+            
+            if askvote1 == askvote2:
+              print (".")
             else:
-                print("\n\t\tSorry, you already have a team member called {}, try again."
-                      .format(teamName))
-        return teamMembers
-
-
-
-    def getPersonName() :
-        personName = input("\n\tEnter name: ")
+              vote = input (" Enter {}'s points for {} ".format(askvote1, askvote2))
+              
+              
+            
+          i = i + 1
+        else: 
+          print ("All votes have been successfully entered")
+          
+        input("\n\nPress the any key to return to main menu.")  
         
-        while Rae.isValidName(personName, MINIMUM_NAME_LENGTH, MAXIMUM_NAME_LENGTH) == False :
-            print(("\n\t\tThe name must be more than {} characters long,"
-                   " less than {} characters long and cannot contain "
-                   "numbers or punctuation characters.").format(MINIMUM_NAME_LENGTH - 1,
-                                                               MAXIMUM_NAME_LENGTH + 1))
-            personName = input("\n\tEnter name: ")
-        return personName
+        
+        
+    else:
+        print ("This project does not exist in the database")
+        
+    
+    
+    time.sleep(5)
+    menu_screen()
+###########   ####################################################  ##################  ###############
+
+def show_projects():
+    """This displays a message for two seconds then clears the console."""
+    
+    os.system('clear')
+    global menu_choice
+    menu_choice = ""
+    print("New features coming soon!")
+    time.sleep(2)
+    menu_screen()
+
+
+def about():
+    """This displays information about the programme and returns
+    to the menu screen on the user's command """
+
+    os.system('clear')
+    global menu_choice
+    menu_choice = ""
+    print("This is Split-it a coursework marking app")
+    input("\n\nPress any key followed by <Enter> to return to the main menu.")
+    menu_screen()
+    
+
+def create_project():
+    """This function allows the user to
+    add a new team and participants."""
+
+    os.system('clear')
+    global menu_choice
+    menu_choice = ""
+    projectName = Rae.getProjectName()
+    teamSize = Rae.getTeamSize()
+    members = Rae.getTeamNames(teamSize, projectName)
+
+    global project_dict
+    project_dict = {}
+    project_dict[projectName] = sic.Project(theName=projectName, theNoOfMems=teamSize, theMembers=members)
+
+  
+    input("\n\nPress the any key to return to main menu.")
+    menu_screen()
+    
+
+
+#Call the main function to begin the programme
+menu()
+
+# 00000000000000000000000000000000000000000000000000000000000000000000000000079
