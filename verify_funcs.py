@@ -120,11 +120,15 @@ class verif2:
 
     def voteInput(number):
 
-        while verif2.voteCheck(number) == False:
-            print(("\n\t\tPlease enter a number between {} and {}").format(MIN_VOTES, MAX_VOTES))
-
-            number = int(input("\n\tEnter votes: "))
-        return number
+        while Rae.isInteger(number) == False:
+            print(("\n\t\tPlease enter an integer between {} and {}").format(MIN_VOTES, MAX_VOTES))
+            number = input("\n\tEnter votes: ")
+        
+            while verif2.voteCheck(number) == False:
+                print(("\n\t\tPlease enter a number between {} and {}").format(MIN_VOTES, MAX_VOTES))
+                number = input("\n\tEnter votes: ")
+                break 
+           continue 
 
     def voteCheck(number):
         if number >= MIN_VOTES and number <= MAX_VOTES:
