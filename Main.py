@@ -7,8 +7,6 @@ import os
 import verify_funcs as vf
 import sic
 
-# constants 
-MAX_VOTES = 100   
 
 # all definitions
 def menu_screen():
@@ -77,30 +75,40 @@ def enter_votes():
     if lookup in project_dict:
         number = project_dict[lookup].NoOfMems
         proname = project_dict[lookup].name
-        #promembers = project_dict[lookup].members
         print("There are {} team members in {}".format(number, proname))
         
-        #print (promembers)
         i = 0
+
         
         while i < number:
-          askvote1 = project_dict[lookup].members[i].name
-          #print(askvote1)
-          print ("Enter {}'s points the number must add up to 100".format(askvote1))
-          
-          for item in project_dict[lookup].members:
-            askvote2 = str(item.name)
-            
-            if askvote1 == askvote2:
-              print (".")
-            else:
-              vote = int(input(" Enter {}'s points for {} ".format(askvote1, askvote2)))
-              vote = vf.verif2.voteInput(vote)
+            votecount = 0 
+            votedict = {}
+            askvote1 = project_dict[lookup].members[i].name
+            print ("Enter {}'s points the number must add up to 100".format(askvote1))
               
+            for item in project_dict[lookup].members:
+                askvote2 = str(item.name)
+                if askvote1 == askvote2:
+                    continue 
+                else:
+                    vote = input("\tEnter {}'s points for {} ".format(askvote1, askvote2))
+                    vote = vf.verif2.voteInput(vote)
+                    votecount += vote 
+                    votedict[askvote2] = vote 
             
-          i = i + 1
+            if votecount != 100:
+                print ("Sorry the votes you have entered do not add up to 100")
+            else: 
+                project_dict[lookup].members[i].votes.update (votedict)
+            #shows everything working 
+            ###print (project_dict[lookup].members[i].votes)
+                i += 1
+                
+                 
+      
+            
         else: 
-          print ("All votes have been successfully entered")
+            print ("All votes have been successfully entered")
           
         input("\n\nPress the any key to return to main menu.")  
         
