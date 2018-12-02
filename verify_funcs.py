@@ -1,3 +1,4 @@
+
 import sic
 
 ## Constants
@@ -10,25 +11,14 @@ MAXIMUM_TEAM_SIZE = 5
 MIN_VOTES = 0
 MAX_VOTES = 100
 
-##  Sets up a project from the information entered by the user.  
-#   @return a tuple containing the project name and the names
-#           of team members
-#  Author: Rae Harbird
-#  Date: November 2018
-# Used to validate team member's name and project name
 class Rae:
 
-
-
-    ##  Prompts the user for a project name and validates it.
-    #   @return a string containing the project name.
-    #
-    #   Invariants: a project name must be between the minimum and maximum length
-    #               and cannot be blank. The name must contain only alphabetic
-    #               characters.
-    #
+    # Function from:
+    # Rae Harbird
+    # Deliverable 1 Sample Answer
     def getProjectName() :
-        """Receives an input for the team name from the user, verifies it is valid\
+        """Receives an input for the team name 
+        from the user, verifies it is valid
         and returns the project name variable"""
 
         projectName = input("\n\tEnter project name: ")
@@ -41,29 +31,25 @@ class Rae:
             projectName = input("\n\tEnter project name: ")
         return projectName
 
-
-    # Check the string contains only characters from the alphabet and check that it is the right length.
-    #
-    # @param theString the string to be validated
-    # @minimum the minimum length of the string
-    # @maximum the maximum length of the string
-    # @return True if the string conforms to the validation conditions and False if it does not.
-    #
+    
+    # Function from:
+    # Rae Harbird
+    # Deliverable 1 Sample Answer
     def isValidName(theString, minimum, maximum) :
-        """Verifies an input name is acceptable and returns a boolean"""
+        """Verifies an input name is 
+        acceptable and returns a boolean"""
 
         return theString.isalpha() == True \
                and len(theString) >= minimum \
                and len(theString) <= maximum
 
-
-    ##  Prompts the user for the team size and validates it.
-    #   @return the number of people in the team.
-    #
-    #   Invariants: the team size must be between the minimum and maximum size.
-    #
+            
+    # Function from:
+    # Rae Harbird
+    # Deliverable 1 Sample Answer
     def getTeamSize() :
-        """Verifies an input team is acceptable and an integer of the team size"""
+        """Verifies an input team is acceptable 
+        and an integer of the team size"""
 
         teamSize = input("\n\tHow many people in the team: ")
 
@@ -74,13 +60,20 @@ class Rae:
 
         return int(teamSize)
 
-
+    
+    # Function from:
+    # Rae Harbird
+    # Deliverable 1 Sample Answer
     def isValidTeamSize(size, minimum, maximum) :
-        """Verifies an input team is acceptable and returns a boolean"""
+        """Verifies an input team is acceptable 
+        and returns a boolean"""
 
         return Rae.isInteger(size) and int(size) >= minimum and int(size) <= maximum
 
-
+    
+    # Function from:
+    # Rae Harbird
+    # Deliverable 1 Sample Answer
     def isInteger(number) :
         """Verifies an input is an integer"""
 
@@ -90,9 +83,15 @@ class Rae:
         except ValueError:
             return False
 
-
+        
+    # Function adapted from:
+    # Rae Harbird
+    # Deliverable 1 Sample Answer
     def getTeamNames(teamSize, projectName):
-        """Returns a lost containing the members of a team"""
+        """Returns a list containing the 
+        members of a team. Also creates 
+        the team membersand assigns them
+        to the correct project name"""
 
         teamNames = []
         teamMembers = []
@@ -106,13 +105,18 @@ class Rae:
                 i = i + 1
 
             else:
-                print("\n\t\tSorry, you already have a team member called {}, try again."
+                print("\n\t\tSorry, you already have a team" 
+                      "member called {}, try again."
                       .format(teamName))
         return teamMembers
 
-
+    
+    # Function from:
+    # Rae Harbird
+    # Deliverable 1 Sample Answer
     def getPersonName() :
-        """Verifies a name input is acceptable and returns it if it is"""
+        """Verifies a name input is acceptable 
+        and returns it if it is"""
 
         personName = input("\n\tEnter name: ")
 
@@ -124,10 +128,13 @@ class Rae:
             personName = input("\n\tEnter name: ")
         return personName
 
+    
 class verif2:
 
+    
     def voteInput(number):
-        """This verifies that a vote input is in the allowable range and an integer """
+        """This verifies that a vote input is in 
+        the allowable range and an integer """
 
         counter = False
         while counter == False:
@@ -137,18 +144,21 @@ class verif2:
                 if verif2.voteCheck(number) == True:
                     counter = True
                 else:
-                    print(("\n\t\tPlease enter an integer between {} and {}").format(MIN_VOTES, MAX_VOTES))
+                    print("\n\t\tPlease enter an integer between {} and {}"
+                          .format(MIN_VOTES, MAX_VOTES))
                     number = input("\n\tEnter votes: ")
 
             else:
-                print(("\n\t\tPlease enter an integer between {} and {}").format(MIN_VOTES, MAX_VOTES))
+                print("\n\t\tPlease enter an integer between {} and {}"
+                      .format(MIN_VOTES, MAX_VOTES))
                 number = input("\n\tEnter votes: ")
 
         return number
 
 
     def voteCheck(number):
-        """This verifies a vote input is in the allowable range"""
+        """This verifies a vote input is 
+        in the allowable range"""
 
         if number >= MIN_VOTES and number <= MAX_VOTES:
             return True
