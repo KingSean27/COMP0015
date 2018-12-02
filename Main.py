@@ -100,8 +100,7 @@ def enter_votes():
                 print ("Sorry the votes you have entered do not add up to 100")
             else: 
                 project_dict[lookup].members[i].votes.update (votedict)
-            #shows everything working 
-            ###print (project_dict[lookup].members[i].votes)
+
                 i += 1
                 
                  
