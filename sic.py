@@ -1,4 +1,4 @@
-# This module contains the project and person class 
+# This module contains Project and Person class 
 
 class Project:
     """The project class contains 3 
