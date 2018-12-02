@@ -112,12 +112,12 @@ def enter_votes():
                 else:
                     vote = input("\tEnter {}'s points for {} "
                                  .format(askvote1, askvote2))
-                    vote = vf.verif2.voteInput(vote)
+                    vote = vf.voteInput(vote)
                     votecount += vote 
                     votedict[askvote2] = vote 
             
             if votecount != 100:
-                print ("Sorry the votes you have"
+                print ("Sorry the votes you have "
                        "entered do not add up to 100")
             else: 
                 project_dict[lookup].members[i].votes.update (votedict)
@@ -129,8 +129,7 @@ def enter_votes():
     else:
         print ("This project does not exist in the database")
         
-    input("\n\nPress any key followed by "
-          "<Enter> to return to the main menu.")
+    input("\n\nPress <Enter> to return to the main menu.")
     time.sleep(2)
     menu_screen()
 
@@ -156,8 +155,7 @@ def about():
     global menu_choice
     menu_choice = ""
     print("This is Split-it a coursework marking app")
-    input("\n\nPress any key followed by "
-          "<Enter> to return to the main menu.")
+    input("\n\nPress <Enter> to return to the main menu.")
     menu_screen()
     
 
@@ -168,9 +166,9 @@ def create_project():
     os.system('clear')
     global menu_choice
     menu_choice = ""
-    projectName = vf.Rae.getProjectName()
-    teamSize = vf.Rae.getTeamSize()
-    members = vf.Rae.getTeamNames(teamSize, projectName)
+    projectName = vf.getProjectName()
+    teamSize = vf.getTeamSize()
+    members = vf.getTeamNames(teamSize, projectName)
 
     global project_dict
     project_dict = {}
@@ -179,13 +177,14 @@ def create_project():
                                             theMembers=members)
 
   
-    input("\n\nPress any key followed by "
-          "<Enter> to return to the main menu.")
+    input("\n\nPress <Enter> to return to the main menu.")
     menu_screen()
     
 
 
 #Calls the menu function which begins the programme
 menu()
+
+
 
 
