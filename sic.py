@@ -1,4 +1,9 @@
+# This module contains the project and person class 
+
 class Project:
+    """The project class contains 3 
+    atrributes a name, number of
+    members and a list of team members"""
 
     def __init__(self, theName, theNoOfMems, theMembers=[]):
         self.name = theName
@@ -34,6 +39,11 @@ class Project:
 
 
 class Person:
+    """The person class contains 3 
+    atrributes the name of the project
+    they are assigned to, their name and 
+    their votes for other team members as 
+    a dictionary"""
 
     def __init__(self, theProject, theName, theVotes={}):
         self.project = theProject
