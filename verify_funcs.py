@@ -134,7 +134,7 @@ class verif2:
             else:
                 print(("\n\t\tPlease enter an integer between {} and {}").format(MIN_VOTES, MAX_VOTES))
                 number = input("\n\tEnter votes: ")
-
+                
         return number
 
 
@@ -143,16 +143,5 @@ class verif2:
             return True
         else:
             return False
-
-
         number = input("\n\tEnter votes: ")
 
-#while Rae.isInteger(number) == False:
- #   print(("\n\t\tPlease enter an integer between {} and {}").format(MIN_VOTES, MAX_VOTES))
-  #  number = input("\n\tEnter votes: ")
-#
-#    while verif2.voteCheck(number) == False:
- #     print(("\n\t\tPlease enter a number between {} and {}").format(MIN_VOTES, MAX_VOTES))
-  #      number = input("\n\tEnter votes: ")
-   #     break
-#continue
