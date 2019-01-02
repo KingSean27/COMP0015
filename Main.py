@@ -10,6 +10,7 @@ import time
 import os
 import verify_funcs as vf
 import sic
+import calcs
 
 
 # all definitions
@@ -130,7 +131,6 @@ def enter_votes():
         print ("This project does not exist in the database")
         
     input("\n\nPress <Enter> to return to the main menu.")
-    time.sleep(2)
     menu_screen()
 
 
@@ -140,9 +140,36 @@ def show_projects():
     
     os.system('clear')
     global menu_choice
+    global project_dict
     menu_choice = ""
-    print("New features coming soon!")
-    time.sleep(2)
+
+    lookup = str(input("Enter the project name: "))
+
+    if lookup in project_dict:
+        number = project_dict[lookup].NoOfMems
+        print("There are {} team members".format(number))
+
+        if number == 3:
+            member1 = calcs.member_creator(theLookup=lookup, search_dict=project_dict, index=0)
+            print(member1.votes)
+            print(member1.name, calcs.score_calc(member1))
+
+            member2 = calcs.member_creator(theLookup=lookup, search_dict=project_dict, index=1)
+            print(member2.votes)
+            print(member2.name, calcs.score_calc(member2))
+
+            member3 = calcs.member_creator(theLookup=lookup, search_dict=project_dict, index=2)
+            print(member3.votes)
+            print(member3.name, calcs.score_calc(member3))
+
+
+        else:
+            print("Only teams with 3 members can be processed")
+
+    else:
+        print ("This project does not exist in the database")
+
+    input("\n\nPress <Enter> to return to the main menu.")
     menu_screen()
 
 
