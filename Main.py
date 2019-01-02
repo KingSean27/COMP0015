@@ -201,7 +201,6 @@ def create_project():
     members = vf.getTeamNames(teamSize, projectName)
 
     global project_dict
-    project_dict = {}
     project_dict[projectName] = sic.Project(theName=projectName, 
                                             theNoOfMems=teamSize, 
                                             theMembers=members)
