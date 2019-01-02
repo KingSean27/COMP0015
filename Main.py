@@ -28,6 +28,7 @@ def menu_screen():
     Create Project (C)
     Enter Votes    (V)
     Show Projects  (S)
+    Test           (T)
     Quit           (Q)
     ''')
 
@@ -54,6 +55,8 @@ def menu_redirect():
             enter_votes()
         elif menu_choice == "S":
             show_projects()
+        elif menu_choice =="T":
+            test_project()
         elif menu_choice == "Q":
             os.system('clear')
             print("Thanks for using Split-it! Closing application...")
@@ -209,6 +212,68 @@ def create_project():
     
 
 
+ ######################################################################################### 
+    
+def test_project():
+    
+    os.system('clear')
+    global menu_choice
+    menu_choice = ""
+    global project_dict
+    #print (project_dict)
+    
+    masterstring = ''
+    
+    for item in project_dict:
+        lookup = project_dict[item].name
+        masterstring += (project_dict[item].name) + ','
+        masterstring += str((project_dict[item].NoOfMems)) + ','
+        
+        i = 0
+        for item in project_dict[lookup].members:
+                masterstring += project_dict[lookup].members[i].name + ','
+                i += 1
+        
+        i = 0
+        for item in project_dict[lookup].members:
+                masterstring += project_dict[lookup].members[i].name + ','
+                votestring = str(project_dict[lookup].members[i].votes)
+                votestring = votestring.replace('{', '')
+                votestring = votestring.replace('}', '')
+                votestring = votestring.replace(':', '')
+                
+                votelist = votestring.split()
+                votestring = ''
+                j = 0
+                
+                for item in votelist:
+                    word = item
+                    if j == 0: 
+                        word = word[1:-1]
+                        word = str(word)
+                        votestring += word + ','                   
+                        j += 1
+                    else:
+                        if word [-1:] == ',':
+                            word = word[:-1]
+                            word = str(word)
+                        else: 
+                            word = str(word)  
+                        votestring += word + ','
+                        j += -1 
+                
+                masterstring += votestring 
+                i += 1
+                
+    print (masterstring)      
+        
+    input("\n\nPress <Enter> to return to the main menu.")
+    menu_screen()
+
+    
+    ######################################################################################### 
+       
+    
 #Calls the menu function which begins the programme
 menu()
 
