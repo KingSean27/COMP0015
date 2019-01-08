@@ -199,6 +199,7 @@ def voteCheck(number):
     # Function from:
     # Rae Harbird
     # Deliverable 1 Sample Answer
+
     def isValidTeamSize(size, minimum, maximum) :
         """Verifies an input team is acceptable 
         and returns a boolean"""

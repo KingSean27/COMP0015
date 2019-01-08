@@ -196,9 +196,9 @@ def create_project():
     os.system('clear')
     global menu_choice
     menu_choice = ""
-    projectName = vf.getProjectName()
-    teamSize = vf.getTeamSize()
-    members = vf.getTeamNames(teamSize, projectName)
+    projectName = sic.Project.getProjectName()
+    teamSize = sic.Project.getTeamSize()
+    members = sic.Project.getTeamNames(teamSize, projectName)
 
     global project_dict
     project_dict[projectName] = sic.Project(theName=projectName, 
