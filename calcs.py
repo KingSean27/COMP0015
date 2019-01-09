@@ -64,4 +64,4 @@ def score_calc(calc_member):
 
     score = 1/(1 + vote1 + vote2)
 
-    return score, vote1, vote2
+    return round(score*100)

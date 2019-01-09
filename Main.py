@@ -149,25 +149,28 @@ def show_projects():
     lookup = str(input("Enter the project name: "))
 
     if lookup in project_dict:
-        number = project_dict[lookup].NoOfMems
-        print("There are {} team members".format(number))
+        if vf.is_empty(project_dict[lookup].members[0].votes) == False:
+            number = project_dict[lookup].NoOfMems
+            print("There are {} team members.".format(number))
 
-        if number == 3:
-            member1 = calcs.member_creator(theLookup=lookup, search_dict=project_dict, index=0)
-            print(member1.votes)
-            print(member1.name, calcs.score_calc(member1))
+            if number == 3:
+                print("\n The point allocation based on votes is:")
 
-            member2 = calcs.member_creator(theLookup=lookup, search_dict=project_dict, index=1)
-            print(member2.votes)
-            print(member2.name, calcs.score_calc(member2))
+                member1 = calcs.member_creator(theLookup=lookup, search_dict=project_dict, index=0)
+                print("\n\t {}: {}".format(member1.name, calcs.score_calc(member1)))
 
-            member3 = calcs.member_creator(theLookup=lookup, search_dict=project_dict, index=2)
-            print(member3.votes)
-            print(member3.name, calcs.score_calc(member3))
+                member2 = calcs.member_creator(theLookup=lookup, search_dict=project_dict, index=1)
+                print("\t {}: {}".format(member2.name, calcs.score_calc(member2)))
 
+                member3 = calcs.member_creator(theLookup=lookup, search_dict=project_dict, index=2)
+                print("\t {}: {}".format(member3.name, calcs.score_calc(member3)))
+
+
+            else:
+                print("Only teams with 3 members can be processed")
 
         else:
-            print("Only teams with 3 members can be processed")
+            print("No votes entered for this project")
 
     else:
         print ("This project does not exist in the database")
