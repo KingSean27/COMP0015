@@ -51,11 +51,11 @@ class Project:
 
         projectName = input("\n\tEnter project name: ")
 
-        while vf.isValidName(projectName, vf.MINIMUM_NAME_LENGTH, vf.MAXIMUM_NAME_LENGTH) == False:
+        while vf.isValidName(projectName, Project.MINIMUM_NAME_LENGTH, Project.MAXIMUM_NAME_LENGTH) == False:
             print(("\n\t\tThe project name must be more than {} characters long, "
                    "less than {} characters long and must contain only "
                    "alphabetic characters. Try again.\n")
-                  .format(MINIMUM_NAME_LENGTH - 1, MAXIMUM_NAME_LENGTH + 1))
+                  .format(Project.MINIMUM_NAME_LENGTH - 1, Project.MAXIMUM_NAME_LENGTH + 1))
             projectName = input("\n\tEnter project name: ")
         return projectName
 

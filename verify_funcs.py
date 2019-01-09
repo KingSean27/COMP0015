@@ -302,3 +302,4 @@ class verif2:
             return False
         number = input("\n\tEnter votes: ")
 
+

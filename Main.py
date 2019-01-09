@@ -196,15 +196,25 @@ def create_project():
     os.system('clear')
     global menu_choice
     menu_choice = ""
-    projectName = sic.Project.getProjectName()
-    teamSize = sic.Project.getTeamSize()
-    members = sic.Project.getTeamNames(teamSize, projectName)
-
     global project_dict
-    project_dict[projectName] = sic.Project(theName=projectName, 
-                                            theNoOfMems=teamSize, 
-                                            theMembers=members)
+    condition = False
 
+    while condition == False:
+
+        projectName = sic.Project.getProjectName()
+
+        if projectName not in project_dict:
+            teamSize = sic.Project.getTeamSize()
+            members = sic.Project.getTeamNames(teamSize, projectName)
+
+            project_dict[projectName] = sic.Project(theName=projectName,
+                                                theNoOfMems=teamSize,
+                                                theMembers=members)
+
+            condition = True
+
+        else:
+            print("\n\n A project with this name already exists")
   
     input("\n\nPress <Enter> to return to the main menu.")
     menu_screen()
