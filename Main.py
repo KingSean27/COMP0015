@@ -28,7 +28,7 @@ def menu_screen():
     Create Project (C)
     Enter Votes    (V)
     Show Projects  (S)
-    Test           (T)
+    Data           (D)
     Quit           (Q)
     ''')
 
@@ -55,9 +55,10 @@ def menu_redirect():
             enter_votes()
         elif menu_choice == "S":
             show_projects()
-        elif menu_choice =="T":
-            test_project()
+        elif menu_choice =="D":
+            show_data()
         elif menu_choice == "Q":
+            end_project()
             os.system('clear')
             print("Thanks for using Split-it! Closing application...")
             time.sleep(2)
@@ -68,17 +69,89 @@ def menu_redirect():
             time.sleep(2)
             menu_screen ()
             
-            
-def menu():
-    """This starts off the programme
-    by calling the visual display and the 
-    actual loop which requires input"""
+
+    
+def start():
+    """Opens the data.txt file and turns 
+    the text into objects if they are 
+    valid. Gives the user an indication
+    of lines with errors. Then starts the 
+    program """
+    
     
     global project_dict
     project_dict = {}
+    
+    infile = open('data.txt','rt')
+    i = 0
+    error_lines = ''
+    failed = False 
+    
+
+    for line in infile:
+        i += 1
+        try: 
+            currentline = line.split(",")
+            project_name = currentline [0]
+            project_number = currentline [1]
+            team_size = int(project_number) 
+            team_members = currentline [2:team_size+2]
+            team_members_objects = []
+            
+
+            verification_list = [int(s) for s in line.split(",") if s.isdigit()] 
+            z = sum (verification_list) - team_size*100 - (team_size - 1)
+            
+            if z == 1: 
+                  
+                for item in team_members: 
+                    name = item
+                    teamMember = sic.Person(theName=name, theProject=project_name, theVotes={})
+                    team_members_objects.append(teamMember)         
+
+                project_dict[project_name] = sic.Project(theName=project_name,
+                                                           theNoOfMems=project_number,
+                                                               theMembers=team_members_objects)
+
+                j = 0 
+                x = 0 
+                counter = int(team_size + 3)
+                amount_of_votes = team_size - 1
+
+                while j < team_size: 
+                    votedict = {}
+
+                    while x < amount_of_votes: 
+                        vote_person = currentline [counter]
+                        counter += 1 
+                        votes = currentline [counter]
+                        counter += 1 
+                        vote_count = int(votes)
+                        votedict[vote_person] = vote_count 
+                        x += 1
+
+                    counter += 1
+                    project_dict[project_name].members[j].votes.update (votedict)
+                    x = 0
+                    j += 1
+     
+        except: 
+            error_lines += str(i) + ','
+            failed = True 
+
+    
+    if failed == True:
+        print ('There is invalid from the input file on lines:', error_lines, 
+              'this will be removed when the program closes')
+    else:
+        print ('All previous projects successfully loaded')
+           
+   
+    time.sleep(3)
     menu_screen()
     menu_redirect()
-
+      
+    
 
 def enter_votes():
     """This looks up the project entered
@@ -224,19 +297,32 @@ def create_project():
     
 
 
- ######################################################################################### 
-    
-def test_project():
+
+def show_data():
     
     os.system('clear')
     global menu_choice
     menu_choice = ""
     global project_dict
-    #print (project_dict)
+    print (project_dict)
+    display = vf.cutter(project_dict)    
+    input("\n\nPress <Enter> to return to the main menu.")
+    menu_screen()
+
     
-    masterstring = ''
+    
+    
+def end_project():
+    
+    os.system('clear')
+    global menu_choice
+    menu_choice = ""
+    global project_dict
+    
+    outfile = open('data.txt', 'wt')
     
     for item in project_dict:
+        masterstring = ''
         lookup = project_dict[item].name
         masterstring += (project_dict[item].name) + ','
         masterstring += str((project_dict[item].NoOfMems)) + ','
@@ -276,19 +362,13 @@ def test_project():
                 
                 masterstring += votestring 
                 i += 1
-                
-    print (masterstring)      
+                 
+        print (masterstring, file=outfile)
         
-    input("\n\nPress <Enter> to return to the main menu.")
-    menu_screen()
+    outfile.close() 
+  
 
-    
-    ######################################################################################### 
        
     
-#Calls the menu function which begins the programme
-menu()
-
-
-
-
+#Calls the start function which begins the programme
+start()
