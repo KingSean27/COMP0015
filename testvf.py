@@ -25,7 +25,6 @@ class TestClass(unittest.TestCase):
     def test_voteCheck(self):
         self.assertTrue(vf.voteCheck(5))
         self.assertFalse(vf.voteCheck(-10))
-        self.assertFalse(vf.voteCheck('Banjo'))
         self.assertFalse(vf.voteCheck(101))        
 
 if __name__ == '__main__':
