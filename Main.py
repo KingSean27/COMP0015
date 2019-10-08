@@ -1,5 +1,4 @@
-## 
-#  This application is a fair grade allocator based on the work by: 
+#  This application is a fair grade allocator based on the work by:
 #  A. Procaccia, J. Goldman, N. Shah and D. Kurokawa.
 #  Author: Group X
 #  Date: Novemeber 2018
