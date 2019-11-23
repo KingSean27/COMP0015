@@ -1,3 +1,2 @@
 projectone,3,tim,jim,kim,tim,jim,50,kim,50,jim,tim,60,kim,40,kim,tim,30,jim,70,
-bonobo's free in the wild 
-projecttwo,3,Jim,Tony,Ahmed,Jim,Tony,40,Ahmed,60 Tony,Jim,50,Ahmed,50,Ahmed,Jim,70,Tony,30
+projecttwo,3,tim,jim,kim,tim,jim,kim,
